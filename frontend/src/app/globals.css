@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/**
+ * Zero-Aura design tokens.
+ *
+ * The palette is deliberately plum-black rather than neutral black: the whole
+ * page is a surface for coloured light, and violet ink makes both the lime and
+ * the coral read as *emission* rather than as flat fills.
+ */
+@theme {
+  --color-ink: #0b0910;
+  --color-ink-2: #100d18;
+  --color-surface: #17141f;
+  --color-surface-2: #221d2e;
+  --color-line: #2e2740;
+  --color-paper: #f3f0f8;
+  --color-muted: #8c8499;
+  --color-bull: #c3f53c;
+  --color-bear: #ff4d6d;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  /* The deck is a fixed, full-viewport surface — the page itself never scrolls. */
+  overscroll-behavior: none;
+}
+
+/* Cards are drag targets; the browser's own text selection and image drag
+   fight the gesture on both pointer and touch. */
+.no-drag-select {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Thin scrollbar for the card's overflow region, so long cards stay readable
+   without a chunky native bar breaking the card silhouette. */
+.card-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+.card-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.card-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: 9999px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-paper);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
