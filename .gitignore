@@ -16,3 +16,7 @@ build/
 
 # Generated card cache (regenerate with ?refresh=true)
 backend/.cache/
+
+# Agent instruction files rewritten by `next dev` on every run
+AGENTS.md
+CLAUDE.md
