@@ -13,3 +13,6 @@ frontend/.env.local
 dist/
 build/
 .DS_Store
+
+# Generated card cache (regenerate with ?refresh=true)
+backend/.cache/
