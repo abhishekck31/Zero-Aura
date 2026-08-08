@@ -28,6 +28,11 @@ export const mockCards: Record<string, CardData> = {
       "Four hyperscalers are roughly 46% of data center revenue — if any of them build in-house, that concentration cuts deep",
       "Advanced packaging lead times are the stated bottleneck on shipments, so demand doesn't convert to revenue on schedule",
     ],
+    liveComments: [
+      "94% growth and people still calling this a bubble 💀",
+      "bro thought he was early at $30 billion a quarter",
+      "packaging constraints gonna cap this way sooner than yall think",
+    ],
   },
   TSLA: {
     ticker: "TSLA",
@@ -45,6 +50,11 @@ export const mockCards: Record<string, CardData> = {
     risks: [
       "Auto gross margin ex-credits fell to 15.4% from 17.1%, so every price cut is landing directly on the P&L",
       "Regulatory credit revenue dropped 34% to $580 million, removing a pure-margin cushion that was holding up earnings",
+    ],
+    liveComments: [
+      "missed 470k deliveries and yall still calling it a growth stock",
+      "energy storage up 78% is the only real business here",
+      "15.4% margins on cars is straight up cooked",
     ],
   },
   PLTR: {
@@ -64,6 +74,11 @@ export const mockCards: Record<string, CardData> = {
       "Roughly 55x forward sales prices in years of flawless execution, so any single soft quarter is a long way down",
       "Government still carries $408 million of the quarter, leaving revenue exposed to procurement cycles and budget timing",
     ],
+    liveComments: [
+      "55x forward sales is not investing thats just vibes",
+      "us commercial up 54% though, thats not nothing",
+      "every bear on this name has been wrong for two years straight",
+    ],
   },
   COIN: {
     ticker: "COIN",
@@ -81,6 +96,11 @@ export const mockCards: Record<string, CardData> = {
     risks: [
       "Management states outright that revenue is highly correlated to crypto prices and volatility, so a quiet market is an earnings problem",
       "Operating expenses climbed 24% sequentially to $1.1 billion, meaning the cost base scales up faster than a downturn can be absorbed",
+    ],
+    liveComments: [
+      "this is just leveraged crypto with extra steps",
+      "stablecoin revenue at $247m is the actual quiet moat 🚀",
+      "opex up 24% sequentially into a cyclical business, no shot",
     ],
   },
   NFLX: {
@@ -100,6 +120,11 @@ export const mockCards: Record<string, CardData> = {
       "Average revenue per membership grew only 1% year over year, so the growth is volume, not pricing, and volume eventually caps",
       "Content amortization is guided to rise as live sports commitments scale, which pressures the same margin line they just expanded",
     ],
+    liveComments: [
+      "ad tier at 40% of signups quietly cooked every competitor",
+      "arpu up 1% lmao they're just adding bodies",
+      "29% margin guide and people still fighting this chart",
+    ],
   },
   AAPL: {
     ticker: "AAPL",
@@ -117,6 +142,11 @@ export const mockCards: Record<string, CardData> = {
     risks: [
       "Greater China revenue fell 11% to $18.5 billion, and that decline has now persisted across multiple quarters",
       "iPhone is still the majority of revenue and it declined 1% year over year, so Services has to keep outrunning the core product",
+    ],
+    liveComments: [
+      "services at 75% margin is the whole company now, cope",
+      "china down 11% four quarters running is not a blip",
+      "record revenue and the iphone still shrank, read that again",
     ],
   },
 };
