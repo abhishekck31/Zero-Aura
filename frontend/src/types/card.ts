@@ -9,6 +9,8 @@ export interface CardData {
   thesis: string[];
   catalysts: string[];
   risks: string[];
+  /** Three short forum-style reactions, shown in the card footer. */
+  liveComments: string[];
   /** Whether this specific card came from Gemini or the curated fallback. */
   source: CardSource;
   /** Present when the card was served from the backend's disk cache. */
