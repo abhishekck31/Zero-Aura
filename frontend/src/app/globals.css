@@ -63,6 +63,47 @@ body {
   border-radius: 4px;
 }
 
+/* Arcade hit on an auto-swipe. Decays rather than shaking flat, and stays
+   small — a large amplitude on a full viewport reads as a rendering bug. */
+@keyframes shake {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(-6px, 0, 0);
+  }
+  40% {
+    transform: translate3d(5px, 0, 0);
+  }
+  60% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-shake {
+  animation: shake 200ms ease-in-out;
+}
+
+@keyframes aura-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-aura-pulse {
+  animation: aura-pulse 2.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
