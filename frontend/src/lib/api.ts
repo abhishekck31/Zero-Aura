@@ -43,4 +43,30 @@ export async function fetchFeed({
   return (await response.json()) as FeedResponse;
 }
 
+export interface HealthResponse {
+  status: string;
+  mode: "ai" | "mock";
+  /** Null when the server resolved to mock mode. */
+  model: string | null;
+}
+
+/**
+ * Server status for the control panel. Never touches the model provider, so
+ * this costs no API quota.
+ */
+export async function fetchHealth(
+  signal?: AbortSignal,
+): Promise<HealthResponse> {
+  const response = await fetch(`${API_BASE}/health`, {
+    ...(signal ? { signal } : {}),
+    headers: { Accept: "application/json" },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Health check failed (${response.status})`);
+  }
+
+  return (await response.json()) as HealthResponse;
+}
+
 export { API_BASE };
