@@ -43,6 +43,12 @@ export const CardDataSchema = z.object({
     .describe(
       "Exactly 2 genuine downside vectors. Real bear cases, not bull points in disguise.",
     ),
+  liveComments: z
+    .array(z.string())
+    .length(3)
+    .describe(
+      "Exactly 3 short financial-forum reactions to this specific ticker. Internet-native, aggressive, lowercase. Max ~10 words each. Emoji allowed here only.",
+    ),
 });
 
 export type CardData = z.infer<typeof CardDataSchema>;
@@ -103,7 +109,11 @@ HARD RULES
   stays loose. Tone is not an excuse for vagueness.
 - "risks" must be real downside. A risk that secretly argues the bull case is a
   failure. If you are bullish, steelman the bear anyway.
-- No emoji. Ever.
+- "liveComments" are 3 forum replies, not analysis. Short, punchy, lowercase,
+  shit-talking. They must react to THIS ticker's actual situation — a comment
+  that would fit under any stock is a failure. Vary the stance across the three:
+  do not write three replies that all agree. At most one may contain an emoji.
+- No emoji anywhere except "liveComments".
 - No hedging filler: never write "it's important to note", "as an AI", "investors
   should", "consult a financial advisor", or any disclaimer.
 - Do not give financial advice or tell the user to buy or sell. Describe the
