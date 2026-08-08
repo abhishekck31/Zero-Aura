@@ -1,14 +1,15 @@
 "use client";
 
 import {
+  AnimatePresence,
   motion,
   useAnimationControls,
   useMotionValue,
   useReducedMotion,
   useTransform,
 } from "framer-motion";
-import { TrendingDown, TrendingUp } from "lucide-react";
-import { useCallback, useImperativeHandle, useRef } from "react";
+import { MessageSquare, TrendingDown, TrendingUp } from "lucide-react";
+import { useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 
 import type { CardData, SwipeDirection } from "@/types/card";
 
@@ -198,8 +199,78 @@ export default function SwipeCard({
             icon={<TrendingDown className="size-3.5" strokeWidth={2.5} />}
           />
         </div>
+
+        <CommentTicker comments={card.liveComments} active={interactive} />
       </article>
     </motion.div>
+  );
+}
+
+/**
+ * Forum chatter pinned to the card's base, cycling one comment at a time.
+ *
+ * The timer runs on the top card only — the two cards stacked behind it are
+ * barely visible, so three concurrent intervals would be pure waste. Under
+ * reduced motion the rotation is dropped and all three are shown at once,
+ * since the point is the content, not the movement.
+ */
+function CommentTicker({
+  comments,
+  active,
+}: {
+  comments: string[];
+  active: boolean;
+}) {
+  const reduceMotion = useReducedMotion();
+  const [position, setPosition] = useState(0);
+
+  const cycling = active && !reduceMotion && comments.length > 1;
+
+  useEffect(() => {
+    if (!cycling) return;
+    const id = setInterval(() => {
+      setPosition((current) => (current + 1) % comments.length);
+    }, 2500);
+    return () => clearInterval(id);
+  }, [cycling, comments.length]);
+
+  if (comments.length === 0) return null;
+
+  if (!cycling) {
+    return (
+      <footer className="shrink-0 space-y-1 border-t border-line bg-white/5 px-5 py-3 backdrop-blur-md">
+        {comments.map((comment) => (
+          <p key={comment} className="text-[11.5px] leading-snug text-paper/60">
+            <span className="text-muted">&gt; </span>
+            {comment}
+          </p>
+        ))}
+      </footer>
+    );
+  }
+
+  const current = comments[position] ?? comments[0] ?? "";
+
+  return (
+    <footer className="relative flex h-[46px] shrink-0 items-center gap-2 overflow-hidden border-t border-line bg-white/5 px-5 backdrop-blur-md">
+      <MessageSquare
+        className="size-3 shrink-0 text-muted"
+        strokeWidth={2.5}
+        aria-hidden
+      />
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.p
+          key={position}
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -12, opacity: 0 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
+          className="truncate text-[11.5px] text-paper/70"
+        >
+          {current}
+        </motion.p>
+      </AnimatePresence>
+    </footer>
   );
 }
 
